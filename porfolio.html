@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description" content="Mechanical Engineering Student Portfolio – CAD, FEA, SolidWorks, ANSYS" />
+    <title>Justice Nyazika | ME Portfolio</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['"DM Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        base: { 950: '#070b14', 900: '#0c111c', 850: '#111827', 800: '#151d2e', 750: '#1a2336', 700: '#1f2a3d' },
+                        accent: { 500: '#0ea5e9', 400: '#38bdf8', 300: '#7dd3fc', 200: '#bae6fd' },
+                        teal: { 500: '#14b8a6', 400: '#2dd4bf' },
+                    },
+                    boxShadow: {
+                        'glow': '0 0 24px rgba(14,165,233,0.3)',
+                        'glow-lg': '0 0 40px rgba(14,165,233,0.4)',
+                        'glow-teal': '0 0 24px rgba(20,184,166,0.3)',
+                        'card': '0 4px 32px rgba(0,0,0,0.4)',
+                        'card-hover': '0 8px 48px rgba(0,0,0,0.5)',
+                        'inner-glow': 'inset 0 1px 0 rgba(255,255,255,0.03)',
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        :root, [data-theme="dark"] {
+            --bg-root: #070b14;
+            --bg-primary: #0c111c;
+            --bg-secondary: #111827;
+            --bg-surface: #151d2e;
+            --bg-surface-hover: #1a2336;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2336;
+            --bg-input: #0f1724;
+            --bg-modal: #151d2e;
+            --bg-overlay: rgba(4,8,16,0.85);
+            --text-heading: #f1f5f9;
+            --text-body: #cbd5e1;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --text-accent: #38bdf8;
+            --accent: #0ea5e9;
+            --accent-light: #38bdf8;
+            --accent-lighter: #7dd3fc;
+            --accent-glow: rgba(14,165,233,0.35);
+            --accent-glow-strong: rgba(14,165,233,0.5);
+            --accent-subtle: rgba(14,165,233,0.08);
+            --accent-surface: rgba(14,165,233,0.12);
+            --accent2: #14b8a6;
+            --accent2-light: #2dd4bf;
+            --accent2-glow: rgba(20,184,166,0.3);
+            --accent2-subtle: rgba(20,184,166,0.08);
+            --border-default: rgba(255,255,255,0.06);
+            --border-light: rgba(255,255,255,0.04);
+            --border-hover: rgba(14,165,233,0.3);
+            --border-accent: rgba(14,165,233,0.4);
+            --gradient-accent: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            --gradient-accent-reverse: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            --gradient-teal: linear-gradient(135deg, #14b8a6, #2dd4bf);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 28px var(--accent-glow);
+            --shadow-glow-lg: 0 0 48px var(--accent-glow-strong);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        [data-theme="light"] {
+            --bg-root: #f8fafc;
+            --bg-primary: #f1f5f9;
+            --bg-secondary: #e8eef5;
+            --bg-surface: #ffffff;
+            --bg-surface-hover: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --bg-input: #f1f5f9;
+            --bg-modal: #ffffff;
+            --bg-overlay: rgba(15,23,42,0.7);
+            --text-heading: #0f172a;
+            --text-body: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --text-accent: #0284c7;
+            --accent: #0284c7;
+            --accent-light: #0ea5e9;
+            --accent-lighter: #38bdf8;
+            --accent-glow: rgba(2,132,199,0.2);
+            --accent-glow-strong: rgba(2,132,199,0.3);
+            --accent-subtle: rgba(2,132,199,0.06);
+            --accent-surface: rgba(2,132,199,0.1);
+            --accent2: #0d9488;
+            --accent2-light: #14b8a6;
+            --accent2-glow: rgba(13,148,136,0.2);
+            --accent2-subtle: rgba(13,148,136,0.06);
+            --border-default: rgba(0,0,0,0.08);
+            --border-light: rgba(0,0,0,0.04);
+            --border-hover: rgba(2,132,199,0.3);
+            --border-accent: rgba(2,132,199,0.5);
+            --gradient-accent: linear-gradient(135deg, #0284c7, #0ea5e9);
+            --gradient-accent-reverse: linear-gradient(135deg, #0ea5e9, #0284c7);
+            --gradient-teal: linear-gradient(135deg, #0d9488, #14b8a6);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+            --shadow-glow: 0 0 20px var(--accent-glow);
+            --shadow-glow-lg: 0 0 36px var(--accent-glow-strong);
+        }
+
+        *,
+        *::before,
+        *::after { box-sizing: border-box; }
+        html { font-family: 'DM Sans', sans-serif; scroll-behavior: smooth; }
+        body {
+            overflow-x: hidden;
+            background-color: var(--bg-primary);
+            color: var(--text-body);
+            font-family: 'DM Sans', 'Inter', sans-serif;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            -webkit-font-smoothing: antialiased;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-root); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+        ::selection { background: var(--accent-surface); color: var(--accent-light); }
+
+        #loader { transition: opacity 0.5s ease, visibility 0.5s ease; background-color: var(--bg-root); }
+        #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+        .gear-spin { animation: gspin 1.2s linear infinite; }
+        @keyframes gspin { to { transform: rotate(360deg); } }
+        .loader-fill { animation: lfill 1.8s ease forwards; }
+        @keyframes lfill { from { width: 0; } to { width: 100%; } }
+
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .fl1 { animation: float 4.5s ease-in-out infinite; }
+        .fl2 { animation: float 4.5s ease-in-out 0.9s infinite; }
+        .fl3 { animation: float 4.5s ease-in-out 1.8s infinite; }
+        .fl4 { animation: float 4.5s ease-in-out 2.7s infinite; }
+
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.22,0.61,0.36,1), transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+        .reveal.show { opacity: 1; transform: translateY(0); }
+
+        .sbar { width: 0; transition: width 1.5s cubic-bezier(0.22,0.61,0.36,1); background: var(--gradient-accent); border-radius: 4px; }
+        .tl-wrap::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent); opacity: 0.4; transform: translateX(-50%); }
+        .nav-link.active { color: var(--accent-light) !important; background: var(--accent-subtle); border-radius: 8px; }
+        .fbtn.active { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; box-shadow: var(--shadow-glow); }
+        #mmenu { transition: max-height 0.35s ease, opacity 0.35s ease; }
+        #mmenu.closed { max-height: 0; opacity: 0; overflow: hidden; pointer-events: none; }
+        #mmenu.open { max-height: 500px; opacity: 1; pointer-events: all; }
+        #pmodal { transition: opacity 0.35s ease, visibility 0.35s ease; }
+        #pmodal.closed { opacity: 0; visibility: hidden; }
+        #pmodal .mi { transition: transform 0.35s cubic-bezier(0.22,0.61,0.36,1); }
+        #pmodal.closed .mi { transform: scale(0.92); }
+        .grid-bg { background-image: linear-gradient(var(--border-light) 1px, transparent 1px), linear-gradient(90deg, var(--border-light) 1px, transparent 1px); background-size: 64px 64px; }
+        input:focus, textarea:focus { outline: none; border-color: var(--accent) !important; box-shadow: 0 0 0 3px var(--accent-subtle); }
+        .card-base { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); transition: all var(--transition-normal); box-shadow: var(--shadow-sm); }
+        .card-base:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-md); background: var(--gradient-accent); color: #fff; font-weight: 600; font-size: 0.875rem; letter-spacing: 0.02em; box-shadow: var(--shadow-glow); transition: all var(--transition-normal); cursor: pointer; border: none; text-decoration: none; }
+        .btn-primary:hover { box-shadow: var(--shadow-glow-lg); transform: translateY(-2px); filter: brightness(1.08); }
+        .btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-md); border: 1.5px solid var(--accent); color: var(--accent-light); font-weight: 600; font-size: 0.875rem; letter-spacing: 0.02em; background: transparent; transition: all var(--transition-normal); cursor: pointer; text-decoration: none; }
+        .btn-outline:hover { background: var(--accent-subtle); border-color: var(--accent-light); transform: translateY(-2px); }
+        .section-accent-line { width: 60px; height: 3px; background: var(--gradient-accent); border-radius: 3px; margin: 0 auto; margin-top: 12px; }
+        .tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--radius-full); background: var(--accent-subtle); border: 1px solid var(--border-hover); color: var(--accent-light); font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; white-space: nowrap; transition: all var(--transition-fast); }
+        .tag:hover { border-color: var(--accent); background: var(--accent-surface); }
+        .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); animation: pulse 2s ease-in-out infinite; box-shadow: 0 0 8px var(--accent2-glow); }
+        @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.6); } }
+        #navbar { background: rgba(7,11,20,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-default); transition: all var(--transition-normal); }
+        [data-theme="light"] #navbar { background: rgba(248,250,252,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        footer { background: var(--bg-root); border-top: 1px solid var(--border-default); }
+        #sTop { background: var(--accent); color: #fff; box-shadow: var(--shadow-glow); transition: all var(--transition-normal); }
+        #sTop:hover { background: var(--accent-light); box-shadow: var(--shadow-glow-lg); transform: translateY(-3px); }
+        @media (max-width: 768px) {
+            .tl-wrap::before { left: 20px; }
+            .tl-wrap .flex.justify-end, .tl-wrap .flex.justify-start { justify-content: flex-start !important; padding-left: 48px !important; padding-right: 0 !important; }
+            .tl-wrap .absolute.left-1\/2 { left: 20px !important; }
+        }
+    </style>
+</head>
+
+<body class="dark antialiased">
+
+    <!-- LOADER -->
+    <div id="loader" class="fixed inset-0 z-[9999] flex items-center justify-center" style="background:var(--bg-root);">
+        <div class="flex flex-col items-center gap-5">
+            <div class="relative"><i class="fas fa-gear text-5xl gear-spin" style="color:var(--accent);"></i><div class="absolute inset-0 rounded-full blur-xl opacity-30" style="background:var(--accent);"></div></div>
+            <p class="font-mono text-xs tracking-[.25em] uppercase" style="color:var(--text-muted);">Initializing<span class="animate-pulse">...</span></p>
+            <div class="w-56 h-[3px] rounded-full overflow-hidden" style="background:var(--border-default);"><div class="loader-fill h-full rounded-full" style="background:var(--gradient-accent);"></div></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#hero" class="font-display text-2xl tracking-widest no-underline" style="color:var(--text-heading);"><span style="color:var(--accent);">[</span>Justice<span style="color:var(--accent);">]</span></a>
+                <ul class="hidden lg:flex items-center gap-1">
+                    <li><a href="#about" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">About</a></li>
+                    <li><a href="#skills" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Skills</a></li>
+                    <li><a href="#projects" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Projects</a></li>
+                    <li><a href="#certs" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Certs</a></li>
+                    <li><a href="#timeline" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Journey</a></li>
+                    <li><a href="#resume" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Resume</a></li>
+                    <li><a href="#contact" class="nav-link px-3 py-1.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Contact</a></li>
+                </ul>
+                <div class="flex items-center gap-3">
+                    <button id="themeBtn" class="w-9 h-9 flex items-center justify-center rounded-full border transition-all text-sm" style="border-color:var(--border-default);color:var(--text-secondary);" aria-label="Toggle theme"><i class="fas fa-sun" id="themeIco"></i></button>
+                    <button id="hbtn" class="lg:hidden flex flex-col gap-[5px] p-1.5" aria-label="Menu"><span id="h1" class="block w-6 h-0.5 rounded transition-all duration-300" style="background:var(--text-heading);"></span><span id="h2" class="block w-6 h-0.5 rounded transition-all duration-300" style="background:var(--text-heading);"></span><span id="h3" class="block w-6 h-0.5 rounded transition-all duration-300" style="background:var(--text-heading);"></span></button>
+                </div>
+            </div>
+        </div>
+        <div id="mmenu" class="closed lg:hidden border-t" style="border-color:var(--border-default);background:var(--bg-primary);">
+            <div class="px-4 py-4 flex flex-col gap-1">
+                <a href="#about" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">About</a>
+                <a href="#skills" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Skills</a>
+                <a href="#projects" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Projects</a>
+                <a href="#certs" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Certifications</a>
+                <a href="#timeline" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Journey</a>
+                <a href="#resume" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Resume</a>
+                <a href="#contact" class="nav-link block px-4 py-2.5 rounded-md text-sm font-medium transition-all" style="color:var(--text-secondary);">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden" style="background:var(--bg-primary);">
+        <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+        <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-[650px] h-[650px] rounded-full pointer-events-none" style="background:var(--accent);opacity:0.04;filter:blur(120px);"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full pointer-events-none" style="background:var(--accent2);opacity:0.04;filter:blur(100px);"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 lg:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6" style="border-color:var(--border-hover);background:var(--accent2-subtle);"><span class="pulse-dot"></span><span class="font-mono text-xs tracking-wider" style="color:var(--accent2-light);">Available for Internships &amp; Projects</span></div>
+                    <h1 class="font-display leading-none mb-4"><span class="block text-[clamp(3.5rem,9vw,7.5rem)] tracking-wider" style="color:var(--text-heading);">JUSTICE</span><span class="block text-[clamp(3.5rem,9vw,7.5rem)] tracking-wider" style="color:var(--accent);">NYAZIKA</span></h1>
+                    <div class="flex items-center gap-3 mb-5"><div class="w-1 h-6 rounded-full flex-shrink-0" style="background:var(--accent);"></div><span class="font-mono text-sm tracking-widest uppercase" style="color:var(--text-secondary);">Mechanical Engineering Student</span></div>
+                    <p class="text-base sm:text-lg leading-relaxed mb-8 max-w-xl" style="color:var(--text-secondary);">Passionate about <span class="font-semibold" style="color:var(--accent-light);">CAD Design</span>, <span class="font-semibold" style="color:var(--accent-light);">Product Development</span>, <span class="font-semibold" style="color:var(--accent-light);">Simulation</span>, and Engineering Innovation.</p>
+                    <div class="flex flex-wrap gap-4 mb-8"><a href="#projects" class="btn-primary"><i class="fas fa-drafting-compass"></i> View Projects</a><a href="#resume" class="btn-outline"><i class="fas fa-file-arrow-down"></i> Download Resume</a></div>
+                    <div class="flex flex-wrap gap-3"><div class="flex items-center gap-2 px-4 py-2 rounded-full border text-sm" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-secondary);"><span class="font-bold" style="color:var(--accent-light);">15+</span> Projects</div><div class="flex items-center gap-2 px-4 py-2 rounded-full border text-sm" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-secondary);"><span class="font-bold" style="color:var(--accent-light);">500+</span> CAD Hours</div><div class="flex items-center gap-2 px-4 py-2 rounded-full border text-sm" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-secondary);"><span class="font-bold" style="color:var(--accent-light);">22+</span> Certifications</div></div>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative">
+                    <div class="hidden sm:block absolute inset-0 pointer-events-none">
+                        <span class="fl1 absolute -top-4 -right-6 xl:-right-14 flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap z-10" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-body);"><i class="fas fa-cube" style="color:var(--accent);"></i> SolidWorks</span>
+                        <span class="fl2 absolute top-1/3 -right-4 xl:-right-10 flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap z-10" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-body);"><i class="fas fa-wave-square" style="color:var(--accent);"></i> ANSYS</span>
+                        <span class="fl3 absolute bottom-1/3 -left-4 xl:-left-10 flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap z-10" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-body);"><i class="fas fa-microchip" style="color:var(--accent);"></i> Arduino</span>
+                        <span class="fl4 absolute -bottom-4 -left-2 xl:-left-6 flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-semibold whitespace-nowrap z-10" style="background:var(--bg-surface);border-color:var(--border-default);color:var(--text-body);"><i class="fas fa-chart-line" style="color:var(--accent);"></i> MATLAB</span>
+                    </div>
+                    <div class="relative w-64 h-72 sm:w-80 sm:h-96 lg:w-[340px] lg:h-[400px]">
+                        <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 rounded-tl-md opacity-70" style="border-color:var(--accent);"></div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 rounded-tr-md opacity-70" style="border-color:var(--accent);"></div>
+                        <div class="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 rounded-bl-md opacity-70" style="border-color:var(--accent);"></div>
+                        <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 rounded-br-md opacity-70" style="border-color:var(--accent);"></div>
+                        <div class="w-full h-full rounded-2xl overflow-hidden border flex flex-col items-center justify-center gap-3" style="border-color:var(--border-default);background:var(--bg-surface);">
+                            <img src="images/profile.jpg" class="w-full h-full object-cover" alt="Justice Nyazika">
+                        </div>
+                        <p class="absolute -bottom-7 left-0 right-0 text-center font-mono text-[10px] tracking-wider" style="color:var(--text-muted);">ME.STUDENT_v1.0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 font-mono text-[10px] tracking-widest" style="color:var(--text-muted);"><span>SCROLL</span><div class="w-px h-10 animate-pulse" style="background:linear-gradient(to bottom, var(--accent), transparent);"></div></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20 lg:py-32" style="background:var(--bg-secondary);">
+        <!-- ... full about section as you provided ... -->
+        <!-- (keeping all your content exactly) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">About Me</h2><div class="section-accent-line"></div></div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+                <div class="lg:col-span-2 reveal">
+                    <p class="font-semibold text-lg leading-relaxed mb-4" style="color:var(--text-heading);">I'm a driven <span style="color:var(--accent-light);">Mechanical Engineering (B.Tech) student</span> passionate about designing autonomous systems, intelligent machines, and innovative products that improve workplace safety and enhance human lives.</p>
+                    <p class="leading-relaxed mb-4" style="color:var(--text-secondary);">My mission is to leverage automation, robotics, machine design, and product development to eliminate workplace hazards and reduce human exposure to dangerous chemicals, sharp tools, repetitive tasks, and physically demanding environments.</p>
+                    <p class="leading-relaxed mb-4" style="color:var(--text-secondary);">Through CAD modeling, simulation-driven design, and hands-on prototyping, I transform complex engineering challenges into practical, reliable, and scalable solutions.</p>
+                    <p class="leading-relaxed mb-8" style="color:var(--text-secondary);">By integrating mechanical engineering with workplace safety principles, I focus on developing systems that maximize productivity while minimizing risks to workers.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-graduation-cap w-4" style="color:var(--accent);"></i> B.Tech Mechanical Engineering (Expected 2028)</div>
+                        <div class="flex items-center gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-map-marker-alt w-4" style="color:var(--accent);"></i> Andhra Pradesh, India</div>
+                        <div class="flex items-center gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-envelope w-4" style="color:var(--accent);"></i> justicejohnnyazika@gmail.com</div>
+                        <div class="flex items-center gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-language w-4" style="color:var(--accent);"></i> English, Shona</div>
+                        <div class="flex items-center gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-shield-alt w-4" style="color:var(--accent);"></i> HSE Engineering Certified</div>
+                        <div class="flex items-center gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-robot w-4" style="color:var(--accent);"></i> Automation & Robotics Enthusiast</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-3">
+                    <h3 class="font-display text-2xl tracking-wider mb-6 reveal" style="color:var(--accent-light);">Engineering Interests</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                        <div class="reveal card-base p-5 group cursor-default"><div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-drafting-compass"></i></div><h4 class="font-semibold text-sm mb-1" style="color:var(--text-heading);">Machine Design</h4><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Designing efficient mechanical systems and industrial equipment.</p></div>
+                        <div class="reveal card-base p-5 group cursor-default"><div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-cube"></i></div><h4 class="font-semibold text-sm mb-1" style="color:var(--text-heading);">CAD & Product Design</h4><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Advanced 3D modeling, engineering drawings, assemblies.</p></div>
+                        <div class="reveal card-base p-5 group cursor-default"><div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-wave-square"></i></div><h4 class="font-semibold text-sm mb-1" style="color:var(--text-heading);">Simulation & Analysis</h4><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Structural, thermal, and fluid simulations using ANSYS.</p></div>
+                        <div class="reveal card-base p-5 group cursor-default"><div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-industry"></i></div><h4 class="font-semibold text-sm mb-1" style="color:var(--text-heading);">Industrial Automation</h4><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Smart manufacturing, sensor integration, automation.</p></div>
+                        <div class="reveal card-base p-5 group cursor-default"><div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-shield-alt"></i></div><h4 class="font-semibold text-sm mb-1" style="color:var(--text-heading);">Workplace Safety Engineering</h4><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Engineering solutions that create safer workplaces.</p></div>
+                        <div class="reveal card-base p-5 group cursor-default"><div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-robot"></i></div><h4 class="font-semibold text-sm mb-1" style="color:var(--text-heading);">Robotics & Autonomous Systems</h4><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Intelligent robotic systems for safety-critical applications.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-20 lg:py-32" style="background:var(--bg-primary);">
+        <!-- ... full skills section ... -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">Skills &amp; Tools</h2><div class="section-accent-line"></div></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" id="skillsSection">
+                <div class="reveal card-base p-6"><div class="flex items-center gap-3 mb-6"><i class="fas fa-cube text-xl" style="color:var(--accent);"></i><h3 class="font-bold tracking-wide" style="color:var(--text-heading);">CAD Software</h3></div><div class="space-y-5"><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">SolidWorks</span><span class="font-mono text-xs" style="color:var(--accent-light);">90%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="90"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">AutoCAD</span><span class="font-mono text-xs" style="color:var(--accent-light);">80%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="80"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">CATIA</span><span class="font-mono text-xs" style="color:var(--accent-light);">65%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="65"></div></div></div></div></div>
+                <div class="reveal card-base p-6"><div class="flex items-center gap-3 mb-6"><i class="fas fa-wave-square text-xl" style="color:var(--accent);"></i><h3 class="font-bold tracking-wide" style="color:var(--text-heading);">Simulation</h3></div><div class="space-y-5"><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">ANSYS Workbench</span><span class="font-mono text-xs" style="color:var(--accent-light);">75%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="75"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">CFD Analysis</span><span class="font-mono text-xs" style="color:var(--accent-light);">60%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="60"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">Structural Analysis</span><span class="font-mono text-xs" style="color:var(--accent-light);">70%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="70"></div></div></div></div></div>
+                <div class="reveal card-base p-6"><div class="flex items-center gap-3 mb-6"><i class="fas fa-code text-xl" style="color:var(--accent);"></i><h3 class="font-bold tracking-wide" style="color:var(--text-heading);">Programming</h3></div><div class="space-y-5"><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">Arduino / C++</span><span class="font-mono text-xs" style="color:var(--accent-light);">80%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="80"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">MATLAB</span><span class="font-mono text-xs" style="color:var(--accent-light);">70%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="70"></div></div></div><div><div class="flex justify-between text-sm mb-1.5"><span style="color:var(--text-body);">Python</span><span class="font-mono text-xs" style="color:var(--accent-light);">60%</span></div><div class="h-1.5 rounded-full overflow-hidden" style="background:var(--border-default);"><div class="sbar h-full" data-w="60"></div></div></div></div></div>
+                <div class="reveal card-base p-6"><div class="flex items-center gap-3 mb-6"><i class="fas fa-gear text-xl" style="color:var(--accent);"></i><h3 class="font-bold tracking-wide" style="color:var(--text-heading);">Engineering</h3></div><div class="flex flex-wrap gap-2"><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Problem Solving</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Design Thinking</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Project Management</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Technical Docs</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> GD&T Standards</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Critical Analysis</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Prototyping</span><span class="tag"><i class="fas fa-check" style="color:var(--accent2);"></i> Teamwork</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS (as you provided, with all images & video) -->
+    <section id="projects" class="py-20 lg:py-32" style="background:var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">Project Portfolio</h2><div class="section-accent-line"></div></div>
+            <div class="flex flex-wrap justify-center gap-2 mb-10 reveal">
+                <button class="fbtn active px-5 py-2 rounded-full border text-xs font-mono tracking-wider transition-all" data-f="all">All</button>
+                <button class="fbtn px-5 py-2 rounded-full border text-xs font-mono tracking-wider transition-all" data-f="solidworks">SolidWorks</button>
+                <button class="fbtn px-5 py-2 rounded-full border text-xs font-mono tracking-wider transition-all" data-f="ansys">ANSYS</button>
+                <button class="fbtn px-5 py-2 rounded-full border text-xs font-mono tracking-wider transition-all" data-f="arduino">Arduino</button>
+                <button class="fbtn px-5 py-2 rounded-full border text-xs font-mono tracking-wider transition-all" data-f="assembly">Assembly</button>
+            </div>
+            <div id="pGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+
+                <!-- Single Cylinder Engine -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks ansys assembly" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Single_Cylinder_Engine_Design/1.JPG" alt="Single Cylinder Engine" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-engine fa-4x opacity-20\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);">
+                            <button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Single Cylinder Engine Design" data-d="Complete 4‑stroke single‑cylinder engine designed in SolidWorks with motion study. ANSYS structural analysis of connecting rod, piston pin, and cylinder head." data-s="SolidWorks, ANSYS, FEA, Motion Study, Engineering Drawings" data-video="Single_Cylinder_Engine_Design/single_cylinder.mp4"><i class="fas fa-expand"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks · ANSYS</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Single Cylinder Engine Design</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Full 4‑stroke engine assembly with motion simulation and FEA analysis.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">ANSYS</span><span class="tag">Motion Study</span></div></div>
+                </div>
+
+                <!-- Shock Absorber -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks ansys assembly" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Shock_Absorber_Assembly/shock 2.JPG" alt="Shock Absorber" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-car-side fa-4x opacity-20\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);">
+                            <button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Shock Absorber Assembly" data-d="Detailed shock absorber with spring‑damper system. Static structural FEA in ANSYS Workbench under dynamic loads." data-s="SolidWorks, ANSYS Workbench, Structural FEA, Assembly Modeling"><i class="fas fa-expand"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks · ANSYS</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Shock Absorber Assembly</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Spring‑damper assembly with ANSYS structural FEA.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">ANSYS</span><span class="tag">FEA</span></div></div>
+                </div>
+
+                <!-- Robot Design & Prototyping -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks arduino" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Robot_Design_&_Prototyping/robot1.JPG" alt="Robot Design" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-robot text-6xl opacity-10\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);">
+                            <button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Robot Design & Prototyping" data-d="Design and development of an autonomous mobile robot with obstacle detection, path planning, and sensor integration. Includes CAD modeling of chassis, Arduino-based control system, and motor driver integration." data-s="SolidWorks, Arduino, C++, Sensors, Motor Control, PCB Design"><i class="fas fa-expand"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks · Arduino</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Robot Design & Prototyping</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Autonomous mobile robot with obstacle detection, path planning, and Arduino control.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">Arduino</span><span class="tag">C++</span><span class="tag">Sensors</span></div></div>
+                </div>
+
+                <!-- Alloy Wheel -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks assembly" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Alloy_Wheel_&_Tyre_Design/tyre.JPG" alt="Alloy Wheel" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-circle fa-4x opacity-20\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);"><button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Alloy Wheel & Tyre Design" data-d="High‑fidelity alloy wheel and tyre assembly. Weight‑optimised spoke geometry with surface modelling and photorealistic rendering." data-s="SolidWorks, Surface Modeling, PhotoView 360, Weight Optimization"><i class="fas fa-expand"></i> View Details</button></div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Alloy Wheel & Tyre Design</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Spoke geometry optimised for weight reduction with rendering.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">Surface Modeling</span><span class="tag">Rendering</span></div></div>
+                </div>
+
+                <!-- Crusher Machine -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks ansys" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Crusher_Machine_Design/crusher.jpeg" alt="Crusher Machine" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-hammer fa-4x opacity-20\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);"><button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Crusher Machine Design" data-d="Complete jaw crusher design with kinematic analysis and ANSYS FEA on toggle plate, fixed jaw, and eccentric shaft." data-s="SolidWorks, Kinematic Analysis, ANSYS, Mechanical Design"><i class="fas fa-expand"></i> View Details</button></div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks · ANSYS</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Crusher Machine Design</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Jaw crusher with kinematic analysis and ANSYS FEA.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">ANSYS</span><span class="tag">Kinematics</span></div></div>
+                </div>
+
+                <!-- Jeep Design -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks assembly" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Jeep_Design/jeep_design_1.jpeg" alt="Jeep Design" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-truck-monster fa-4x opacity-20\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);"><button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Jeep Design" data-d="Full‑scale Jeep body, chassis, suspension, drivetrain, and cabin. Exploded views and photorealistic studio renderings." data-s="SolidWorks, Large Assembly, Exploded Views, PhotoView 360"><i class="fas fa-expand"></i> View Details</button></div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Jeep Design</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Full‑scale Jeep with suspension, drivetrain, and studio render.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">Large Assembly</span><span class="tag">PhotoView 360</span></div></div>
+                </div>
+
+                <!-- Wheel Loader -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="solidworks assembly" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Wheel_Loader_Design/wheelloader1.jpeg" alt="Wheel Loader" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-tractor text-6xl opacity-10\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);">
+                            <button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Wheel Loader Design" data-d="Complete design of a heavy-duty wheel loader including bucket, hydraulic arms, chassis, and cabin. Assembly modeling, kinematic analysis, and structural validation using SolidWorks." data-s="SolidWorks, Large Assembly, Kinematic Analysis, Hydraulic Systems, FEA"><i class="fas fa-expand"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">SolidWorks · Assembly</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Wheel Loader Design</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Heavy‑duty wheel loader with hydraulic arm, bucket assembly, and structural analysis.</p><div class="flex flex-wrap gap-1.5"><span class="tag">SolidWorks</span><span class="tag">Large Assembly</span><span class="tag">Kinematics</span><span class="tag">Hydraulics</span></div></div>
+                </div>
+
+                <!-- Arduino -->
+                <div class="pcard reveal card-base overflow-hidden group" data-c="arduino" style="padding:0;">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="Aduino_Engineering_Project/tinkercad_seed_sowing_project_circuit_diagram.jpeg" alt="Arduino Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-root\'><i class=\'fas fa-microchip fa-4x opacity-20\'></i></div>'">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:rgba(7,11,20,0.85);">
+                            <button class="omodal px-4 py-2 rounded-lg text-white text-xs font-semibold flex items-center gap-2" style="background:var(--accent);box-shadow:var(--shadow-glow);" data-t="Arduino Engineering Projects" data-d="Obstacle‑avoiding robot, CNC plotter, temperature‑controlled fan, digital weighing scale. Circuit schematics and C++ firmware included." data-s="Arduino, C++, Sensors, PCB Design, Embedded Systems" data-video="Aduino_Engineering_Project/tinkercad_seed_sowing_simulation_video.mp4"><i class="fas fa-expand"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div style="padding:20px;"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Arduino</p><h3 class="font-bold text-sm mb-2 leading-snug" style="color:var(--text-heading);">Arduino Engineering Projects</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Autonomous robot, CNC plotter, temp‑controlled fan, digital weighing system.</p><div class="flex flex-wrap gap-1.5"><span class="tag">Arduino</span><span class="tag">C++</span><span class="tag">Sensors</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL (with video support) -->
+    <div id="pmodal" class="closed fixed inset-0 z-[2000] flex items-center justify-center p-4" style="background:var(--bg-overlay);">
+        <div class="mi relative rounded-2xl max-w-lg w-full overflow-hidden border" style="background:var(--bg-modal);border-color:var(--border-default);box-shadow:var(--shadow-glow-lg);">
+            <button id="cmodal" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all text-sm" style="background:var(--border-default);color:var(--text-secondary);"><i class="fas fa-xmark"></i></button>
+            <div class="h-44 flex items-center justify-center relative overflow-hidden" style="background:var(--bg-root);">
+                <i id="mIco" class="fas fa-cogs text-7xl opacity-10" style="color:var(--text-muted);"></i>
+                <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, var(--bg-modal), transparent);"></div>
+            </div>
+            <div class="p-6">
+                <h3 id="mTitle" class="text-lg font-bold mb-3" style="color:var(--text-heading);"></h3>
+                <p id="mDesc" class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);"></p>
+                <div id="mVideoContainer" class="mb-4"></div>
+                <p class="font-mono text-[10px] tracking-widest mb-2 uppercase" style="color:var(--text-muted);">Skills Used</p>
+                <div id="mSkills" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CERTIFICATIONS (23 cards) -->
+    <section id="certs" class="py-20 lg:py-32" style="background:var(--bg-primary);">
+        <!-- ... full certs section ... -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">Certifications</h2><div class="section-accent-line"></div></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">3D Printing and Additive Manufacturing</h3><a href="certificates/3D_Printing_and_Additive_Manufacturing_Specialisation.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">AI for Mechanical Engineers</h3><a href="certificates/AI_for_Mechanical_Engineers_Specialization.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Autonomous Vehicle Engineering</h3><a href="certificates/Autonomous_Vehicle_Engineering_Specialization_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Computer Aided Design (CAD)</h3><a href="certificates/Computer_Aided_Design_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Creativity Toolkit</h3><a href="certificates/Creativity_Toolkit_1_Changing_Perspectives_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Digital Manufacturing</h3><a href="certificates/Digital_Manufacturing_Specialisation.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Engineering & Product Design Processes</h3><a href="certificates/Engineering_and_Product_Design_Processes_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Health, Safety & Environment Engineering</h3><a href="certificates/Health_Safety_and_Environment_Engineering_Specialization.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Heavy Manufacturing</h3><a href="certificates/Heavy_Manufacturing_Specialisation_4_Courses_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">ANSYS Simulation Tools</h3><a href="certificates/Innovate_with_ANSYS_Simulation_Tools_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">CATIA V5</h3><a href="certificates/Introduction_to_CATIA_V5_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Python Programming</h3><a href="certificates/Introduction_to_Python_Programming_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Software Engineering</h3><a href="certificates/Introduction_to_Software_Engineering_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Innovative Business</h3><a href="certificates/Launching_an_Innovative_Business_Specialization.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Leadership & Team Management</h3><a href="certificates/Leading_People_and_Team_Specialization.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Machine Design</h3><a href="certificates/Machine_Design_Part_1_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Engineering Project Management</h3><a href="certificates/Managing_Major_Engineering_Projects_Specialization.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Material Science</h3><a href="certificates/Material_Science_for_Technological_Application_Specialisation.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Plant Design & Economics</h3><a href="certificates/Plant_Design_and_Economics_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">AutoCAD Product Design</h3><a href="certificates/Product_Design_using_AutoCAD_Certificate.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Rapid Prototyping Using 3D Printing</h3><a href="certificates/Rapid_Prototyping_Using_3D_Printing_Specialisation.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">Data Analysis Using Python</h3><a href="certificates/Data_Analysis_Using_Python.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+                <div class="reveal card-base p-5 flex flex-col gap-3"><h3 class="font-bold text-sm leading-snug" style="color:var(--text-heading);">SOLIDWORKS 3D CAD</h3><a href="certificates/SOLIDWORKS_3D_CAD_for_Education_Specialization.pdf" target="_blank" class="mt-auto self-start inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border text-xs font-semibold transition-all" style="border-color:var(--border-hover);color:var(--accent-light);"><i class="fas fa-external-link-alt text-[10px]"></i> View Certificate</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" class="py-20 lg:py-32" style="background:var(--bg-secondary);">
+        <!-- ... full timeline ... -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">Engineering Journey</h2><div class="section-accent-line"></div></div>
+            <div class="relative tl-wrap max-w-3xl mx-auto">
+                <div class="reveal flex justify-end pr-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-play text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 1 — 2021</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">Engineering Foundations</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Began B.E. Mechanical Engineering. Strong foundations in mechanics, thermodynamics, and mathematics.</p><div class="flex flex-wrap gap-1"><span class="tag">Mechanics</span><span class="tag">Engineering Drawing</span></div></div></div>
+                <div class="reveal flex justify-start pl-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-cube text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 1–2 — 2022</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">CAD Learning</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Mastered SolidWorks and AutoCAD. First parametric models.</p><div class="flex flex-wrap gap-1"><span class="tag">SolidWorks</span><span class="tag">AutoCAD</span></div></div></div>
+                <div class="reveal flex justify-end pr-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-gears text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 2 — 2022</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">First SolidWorks Projects</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Engine, bearing, wheel assemblies. First SolidWorks cert.</p><div class="flex flex-wrap gap-1"><span class="tag">Engine Design</span><span class="tag">Certification</span></div></div></div>
+                <div class="reveal flex justify-start pl-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-wave-square text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 2–3 — 2023</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">ANSYS & Simulation</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">FEA with ANSYS Workbench. NPTEL FEA certification.</p><div class="flex flex-wrap gap-1"><span class="tag">ANSYS</span><span class="tag">FEA</span><span class="tag">CFD</span></div></div></div>
+                <div class="reveal flex justify-end pr-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-trophy text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 3 — 2023</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">Engineering Competitions</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Design competitions and hackathons.</p><div class="flex flex-wrap gap-1"><span class="tag">Design Contest</span><span class="tag">Innovation</span></div></div></div>
+                <div class="reveal flex justify-start pl-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-microchip text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 3–4 — 2024</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">Mechatronics & Arduino</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Arduino projects, robotics.</p><div class="flex flex-wrap gap-1"><span class="tag">Arduino</span><span class="tag">Robotics</span></div></div></div>
+                <div class="reveal flex justify-end pr-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent);color:var(--accent);"><i class="fas fa-folder-open text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all card-base"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Year 4 — 2024</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">Portfolio Development</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Consolidated projects, advanced certs.</p><div class="flex flex-wrap gap-1"><span class="tag">Portfolio</span><span class="tag">Certifications</span></div></div></div>
+                <div class="reveal flex justify-start pl-[calc(50%+2rem)] mb-8 relative"><div class="absolute left-1/2 -translate-x-1/2 top-5 w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs z-10 transition-all" style="background:var(--bg-secondary);border-color:var(--accent2);color:var(--accent2);"><i class="fas fa-rocket text-[10px]"></i></div><div class="max-w-xs w-full p-5 rounded-xl border transition-all" style="border-color:var(--accent2);opacity:0.3;background:var(--bg-card);"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent2-light);">Upcoming — 2025+</p><h3 class="font-bold text-sm mb-2" style="color:var(--text-heading);">Future Projects & Career</h3><p class="text-xs leading-relaxed mb-3" style="color:var(--text-muted);">Internships, R&D, AI+Engineering.</p><div class="flex flex-wrap gap-1"><span class="tag">Internship</span><span class="tag">R&D</span><span class="tag">AI+Engineering</span></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COUNTERS -->
+    <section id="counters" class="py-16 border-y" style="background:var(--bg-primary);border-color:var(--border-default);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-0">
+                <div class="relative flex flex-col items-center py-10 px-4 text-center group lg:after:content-[''] lg:after:absolute lg:after:right-0 lg:after:top-1/4 lg:after:bottom-1/4 lg:after:w-px" style="--after-bg:var(--border-default);"><i class="fas fa-folder-open text-2xl mb-3 transition-colors opacity-40 group-hover:opacity-100" style="color:var(--accent);"></i><span class="ctr font-display text-5xl lg:text-6xl tracking-wider leading-none" style="color:var(--accent-light);" data-target="15">0</span><span class="text-sm mt-2" style="color:var(--text-muted);">Projects Completed</span></div>
+                <div class="relative flex flex-col items-center py-10 px-4 text-center group lg:after:content-[''] lg:after:absolute lg:after:right-0 lg:after:top-1/4 lg:after:bottom-1/4 lg:after:w-px" style="--after-bg:var(--border-default);"><i class="fas fa-certificate text-2xl mb-3 transition-colors opacity-40 group-hover:opacity-100" style="color:var(--accent);"></i><span class="ctr font-display text-5xl lg:text-6xl tracking-wider leading-none" style="color:var(--accent-light);" data-target="22">0</span><span class="text-sm mt-2" style="color:var(--text-muted);">Certifications Earned</span></div>
+                <div class="relative flex flex-col items-center py-10 px-4 text-center group lg:after:content-[''] lg:after:absolute lg:after:right-0 lg:after:top-1/4 lg:after:bottom-1/4 lg:after:w-px" style="--after-bg:var(--border-default);"><i class="fas fa-clock text-2xl mb-3 transition-colors opacity-40 group-hover:opacity-100" style="color:var(--accent);"></i><span class="ctr font-display text-5xl lg:text-6xl tracking-wider leading-none" style="color:var(--accent-light);" data-target="500">0</span><span class="text-sm mt-2" style="color:var(--text-muted);">CAD Hours Practiced</span></div>
+                <div class="relative flex flex-col items-center py-10 px-4 text-center group"><i class="fas fa-wave-square text-2xl mb-3 transition-colors opacity-40 group-hover:opacity-100" style="color:var(--accent);"></i><span class="ctr font-display text-5xl lg:text-6xl tracking-wider leading-none" style="color:var(--accent-light);" data-target="30">0</span><span class="text-sm mt-2" style="color:var(--text-muted);">Simulations Completed</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="py-20 lg:py-32" style="background:var(--bg-secondary);">
+        <!-- ... full resume section ... -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">Resume</h2><div class="section-accent-line"></div></div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="reveal space-y-5">
+                    <h3 class="font-display text-xl tracking-wider flex items-center gap-2 pb-3" style="color:var(--accent-light);border-bottom:1px solid var(--border-default);"><i class="fas fa-graduation-cap text-base"></i> Education</h3>
+                    <div class="card-base p-5"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">2021 – Present</p><h4 class="font-bold text-sm mb-0.5" style="color:var(--text-heading);">B.E. Mechanical Engineering</h4><p class="text-xs mb-2" style="color:var(--accent2-light);">Aditya University · India</p><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Specialization in Design , Automation and Manufacturing.</p></div>
+                    <div class="card-base p-5"><p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">2019 – 2021</p><h4 class="font-bold text-sm mb-0.5" style="color:var(--text-heading);">Higher Secondary (12th Grade)</h4><p class="text-xs mb-2" style="color:var(--accent2-light);">Sakubva High School · PCM</p><p class="text-xs leading-relaxed" style="color:var(--text-muted);">Physics, Chemistry, Mathematics, Statistics with distinction.</p></div>
+                    <h3 class="font-display text-xl tracking-wider flex items-center gap-2 pb-3 pt-2" style="color:var(--accent-light);border-bottom:1px solid var(--border-default);"><i class="fas fa-award text-base"></i> Key Achievements</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-3 text-sm pb-2" style="color:var(--text-secondary);border-bottom:1px solid var(--border-light);"><i class="fas fa-chevron-right text-xs mt-1 flex-shrink-0" style="color:var(--accent);"></i> Top performer in CAD & Design courses</li>
+                        <li class="flex items-start gap-3 text-sm pb-2" style="color:var(--text-secondary);border-bottom:1px solid var(--border-light);"><i class="fas fa-chevron-right text-xs mt-1 flex-shrink-0" style="color:var(--accent);"></i> Participated in inter-college design competition</li>
+                        <li class="flex items-start gap-3 text-sm pb-2" style="color:var(--text-secondary);border-bottom:1px solid var(--border-light);"><i class="fas fa-chevron-right text-xs mt-1 flex-shrink-0" style="color:var(--accent);"></i> Completed 22+ certified online courses</li>
+                        <li class="flex items-start gap-3 text-sm" style="color:var(--text-secondary);"><i class="fas fa-chevron-right text-xs mt-1 flex-shrink-0" style="color:var(--accent);"></i> 500+ hours of hands-on CAD practice</li>
+                    </ul>
+                </div>
+                <div class="reveal space-y-5">
+                    <h3 class="font-display text-xl tracking-wider flex items-center gap-2 pb-3" style="color:var(--accent-light);border-bottom:1px solid var(--border-default);"><i class="fas fa-tools text-base"></i> Technical Summary</h3>
+                    <div class="card-base p-5 space-y-3">
+                        <div class="flex flex-wrap items-center gap-2"><span class="font-mono text-[10px] tracking-widest w-20" style="color:var(--text-muted);">CAD</span><span class="tag">SolidWorks</span><span class="tag">AutoCAD</span><span class="tag">CATIA</span></div>
+                        <div class="flex flex-wrap items-center gap-2"><span class="font-mono text-[10px] tracking-widest w-20" style="color:var(--text-muted);">SIM</span><span class="tag">ANSYS</span><span class="tag">CFD</span><span class="tag">FEA</span></div>
+                        <div class="flex flex-wrap items-center gap-2"><span class="font-mono text-[10px] tracking-widest w-20" style="color:var(--text-muted);">CODE</span><span class="tag">Arduino/C++</span><span class="tag">MATLAB</span><span class="tag">Python</span></div>
+                        <div class="flex flex-wrap items-center gap-2"><span class="font-mono text-[10px] tracking-widest w-20" style="color:var(--text-muted);">OTHER</span><span class="tag">GD&T</span><span class="tag">Technical Drawing</span><span class="tag">MS Office</span></div>
+                    </div>
+                    <h3 class="font-display text-xl tracking-wider flex items-center gap-2 pb-3 pt-2" style="color:var(--accent-light);border-bottom:1px solid var(--border-default);"><i class="fas fa-briefcase text-base"></i> Experience / Projects</h3>
+                    <div class="card-base p-5 mb-4">
+                        <p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Nov 2024 – Present</p>
+                        <h4 class="font-bold text-sm mb-0.5" style="color:var(--text-heading);">International Student Representative</h4>
+                        <p class="text-xs mb-2" style="color:var(--accent2-light);">Aditya University Boys Hostel | Peddapuram, Andhra Pradesh, India</p>
+                        <p class="text-xs leading-relaxed" style="color:var(--text-muted);">Act as the primary liaison and advocate for international students, working directly with university housing administration to resolve welfare and facility concerns.</p>
+                    </div>
+                    <div class="card-base p-5 mb-4">
+                        <p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">Aug 2022 – Oct 2024</p>
+                        <h4 class="font-bold text-sm mb-0.5" style="color:var(--text-heading);">Youth Project Manager</h4>
+                        <p class="text-xs mb-2" style="color:var(--accent2-light);">Guta Ra Jehovha | Mutare, Zimbabwe</p>
+                        <p class="text-xs leading-relaxed" style="color:var(--text-muted);">Led a multidisciplinary youth team and coordinated a solar-powered irrigation project, community garden, and poultry project.</p>
+                    </div>
+                    <div class="card-base p-5">
+                        <p class="font-mono text-[10px] tracking-wider mb-1" style="color:var(--accent);">2025 – Present</p>
+                        <h4 class="font-bold text-sm mb-0.5" style="color:var(--text-heading);">Major Project: Autonomous Delivery Robot</h4>
+                        <p class="text-xs mb-2" style="color:var(--accent2-light);">Mechanical Engineering Portfolio Project</p>
+                        <p class="text-xs leading-relaxed" style="color:var(--text-muted);">Designing an autonomous delivery robot with obstacle detection, route navigation, and Arduino control.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center reveal">
+                <a href="RESUME/justiceRESUME.pdf" download="Justice_Nyazika_Resume.pdf" class="btn-primary text-lg px-10 py-4"><i class="fas fa-file-arrow-down text-base"></i> Download Full Resume (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT (with EmailJS) -->
+    <section id="contact" class="py-20 lg:py-32" style="background:var(--bg-primary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal"><span class="font-mono text-xs tracking-[.15em] block mb-2" style="color:var(--accent);"></span><h2 class="font-display text-5xl lg:text-6xl tracking-wider" style="color:var(--text-heading);">Get In Touch</h2><div class="section-accent-line"></div></div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+                <div class="lg:col-span-2 reveal space-y-4">
+                    <p class="leading-relaxed mb-6" style="color:var(--text-secondary);">Open to internship opportunities, collaborations, and engineering discussions. Let's connect!</p>
+                    <a href="mailto:justicejohnnyazika@gmail.com" class="group flex items-center gap-4 p-4 rounded-xl border transition-all card-base" style="display:flex;"><div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:var(--accent-subtle);color:var(--accent);"><i class="fas fa-envelope"></i></div><div><p class="text-[10px] font-mono tracking-widest" style="color:var(--text-muted);">EMAIL</p><p class="text-sm font-medium" style="color:var(--text-heading);">justicejohnnyazika@gmail.com</p></div></a>
+                    <a href="https://www.linkedin.com/in/justice-nyazika-146041267" target="_blank" class="group flex items-center gap-4 p-4 rounded-xl border transition-all card-base" style="display:flex;"><div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:var(--accent-subtle);color:var(--accent);"><i class="fab fa-linkedin"></i></div><div><p class="text-[10px] font-mono tracking-widest" style="color:var(--text-muted);">LINKEDIN</p><p class="text-sm font-medium" style="color:var(--text-heading);">linkedin.com/in/justice-nyazika-146041267</p></div></a>
+                    <a href="https://github.com/yourusername" target="_blank" class="group flex items-center gap-4 p-4 rounded-xl border transition-all card-base" style="display:flex;"><div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:var(--accent-subtle);color:var(--accent);"><i class="fab fa-github"></i></div><div><p class="text-[10px] font-mono tracking-widest" style="color:var(--text-muted);">GITHUB</p><p class="text-sm font-medium" style="color:var(--text-heading);">github.com/yourusername</p></div></a>
+                    <a href="https://wa.me/263717366292" target="_blank" class="group flex items-center gap-4 p-4 rounded-xl border transition-all card-base" style="display:flex;"><div class="w-11 h-11 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style="background:var(--accent-subtle);color:var(--accent);"><i class="fab fa-whatsapp"></i></div><div><p class="text-[10px] font-mono tracking-widest" style="color:var(--text-muted);">WHATSAPP</p><p class="text-sm font-medium" style="color:var(--text-heading);">+263 717 366 292</p></div></a>
+                </div>
+                <form id="cForm" class="lg:col-span-3 reveal space-y-4" novalidate>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-medium" style="color:var(--text-secondary);">Full Name</label>
+                            <input type="text" name="user_name" id="fn" placeholder="John Doe" class="rounded-lg px-4 py-3 text-sm transition-all" style="background:var(--bg-input);border:1px solid var(--border-default);color:var(--text-heading);" required />
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label class="text-xs font-medium" style="color:var(--text-secondary);">Email Address</label>
+                            <input type="email" name="user_email" id="fe" placeholder="john@example.com" class="rounded-lg px-4 py-3 text-sm transition-all" style="background:var(--bg-input);border:1px solid var(--border-default);color:var(--text-heading);" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-medium" style="color:var(--text-secondary);">Subject</label>
+                        <input type="text" name="subject" id="fs" placeholder="Internship Opportunity / Collaboration" class="rounded-lg px-4 py-3 text-sm transition-all" style="background:var(--bg-input);border:1px solid var(--border-default);color:var(--text-heading);" />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-medium" style="color:var(--text-secondary);">Message</label>
+                        <textarea name="message" id="fm" rows="5" placeholder="Tell me about your project or opportunity..." class="rounded-lg px-4 py-3 text-sm resize-y transition-all" style="background:var(--bg-input);border:1px solid var(--border-default);color:var(--text-heading);" required></textarea>
+                    </div>
+                    <button type="submit" id="fBtn" class="btn-primary w-full justify-center py-3.5"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <div id="fStatus" class="hidden text-center text-sm rounded-lg py-3 px-4"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-14 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                <div class="sm:col-span-2">
+                    <span class="font-display text-2xl tracking-widest block mb-3" style="color:var(--text-heading);"><span style="color:var(--accent);">[</span>Justice John Nyazika<span style="color:var(--accent);">]</span></span>
+                    <p class="text-sm leading-relaxed max-w-xs mb-5" style="color:var(--text-muted);">Mechanical Engineering student passionate about CAD design, simulation, and engineering innovation.</p>
+                    <div class="flex gap-3">
+                        <a href="mailto:justicejohnnyazika@gmail.com" class="w-9 h-9 rounded-full border flex items-center justify-center text-sm transition-all" style="border-color:var(--border-default);color:var(--text-muted);"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/justice-nyazika-146041267" target="_blank" class="w-9 h-9 rounded-full border flex items-center justify-center text-sm transition-all" style="border-color:var(--border-default);color:var(--text-muted);"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/yourusername" target="_blank" class="w-9 h-9 rounded-full border flex items-center justify-center text-sm transition-all" style="border-color:var(--border-default);color:var(--text-muted);"><i class="fab fa-github"></i></a>
+                        <a href="https://wa.me/263717366292" target="_blank" class="w-9 h-9 rounded-full border flex items-center justify-center text-sm transition-all" style="border-color:var(--border-default);color:var(--text-muted);"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-mono text-[10px] tracking-widest mb-4 uppercase" style="color:var(--accent-light);">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="text-sm transition-colors" style="color:var(--text-muted);">Home</a></li>
+                        <li><a href="#about" class="text-sm transition-colors" style="color:var(--text-muted);">About</a></li>
+                        <li><a href="#skills" class="text-sm transition-colors" style="color:var(--text-muted);">Skills</a></li>
+                        <li><a href="#projects" class="text-sm transition-colors" style="color:var(--text-muted);">Projects</a></li>
+                        <li><a href="#certs" class="text-sm transition-colors" style="color:var(--text-muted);">Certifications</a></li>
+                        <li><a href="#contact" class="text-sm transition-colors" style="color:var(--text-muted);">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-mono text-[10px] tracking-widest mb-4 uppercase" style="color:var(--accent-light);">Featured Projects</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#projects" class="text-sm transition-colors" style="color:var(--text-muted);">Engine Design</a></li>
+                        <li><a href="#projects" class="text-sm transition-colors" style="color:var(--text-muted);">Shock Absorber</a></li>
+                        <li><a href="#projects" class="text-sm transition-colors" style="color:var(--text-muted);">Jeep Design</a></li>
+                        <li><a href="#projects" class="text-sm transition-colors" style="color:var(--text-muted);">Arduino Projects</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t pt-6 text-center" style="border-color:var(--border-default);">
+                <p class="text-xs" style="color:var(--text-muted);">&copy; <span id="yr"></span> Justice John Nyazika — Mechanical Engineering Portfolio. Built with precision and passion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="sTop" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full flex items-center justify-center opacity-0 invisible translate-y-3 transition-all duration-300"><i class="fas fa-arrow-up text-sm"></i></button>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        /* 1. LOADER */
+        window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hide'), 1900));
+
+        /* 2. NAVBAR scroll + active */
+        const nb = document.getElementById('navbar');
+        const secs = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            nb.classList.toggle('shadow-[0_2px_20px_rgba(0,0,0,0.4)]', scrollY > 50);
+            let cur = '';
+            secs.forEach(s => { if (scrollY >= s.offsetTop - 100) cur = s.id; });
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+            const st = document.getElementById('sTop');
+            if (scrollY > 400) { st.classList.remove('opacity-0', 'invisible', 'translate-y-3'); } else { st.classList.add('opacity-0', 'invisible', 'translate-y-3'); }
+        });
+        document.getElementById('sTop').addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+        /* 3. HAMBURGER */
+        let mOpen = false;
+        document.getElementById('hbtn').addEventListener('click', () => {
+            mOpen = !mOpen;
+            const mm = document.getElementById('mmenu');
+            mm.className = mm.className.replace(/\b(open|closed)\b/g, mOpen ? 'open' : 'closed');
+            document.getElementById('h1').style.transform = mOpen ? 'translateY(7px) rotate(45deg)' : '';
+            document.getElementById('h2').style.opacity = mOpen ? '0' : '1';
+            document.getElementById('h3').style.transform = mOpen ? 'translateY(-7px) rotate(-45deg)' : '';
+        });
+        document.querySelectorAll('#mmenu a').forEach(a => a.addEventListener('click', () => {
+            mOpen = false;
+            const mm = document.getElementById('mmenu');
+            mm.className = mm.className.replace(/\b(open|closed)\b/g, 'closed');
+            ['h1', 'h2', 'h3'].forEach(id => document.getElementById(id).style.transform = '');
+            document.getElementById('h2').style.opacity = '1';
+        }));
+
+        /* 4. THEME */
+        let dark = true;
+        const html = document.documentElement;
+        const themeBtn = document.getElementById('themeBtn');
+        const themeIco = document.getElementById('themeIco');
+        function applyTheme(isDark) {
+            html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            html.classList.toggle('dark', isDark);
+            themeIco.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        themeBtn.addEventListener('click', () => { dark = !dark; applyTheme(dark); });
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') { dark = false; applyTheme(false); } else { applyTheme(true); }
+
+        /* 5. SCROLL REVEAL */
+        const ro = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const d = parseInt(e.target.dataset.delay || 0);
+                    setTimeout(() => e.target.classList.add('show'), d);
+                    ro.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.grid').forEach(g => g.querySelectorAll('.reveal').forEach((el, i) => el.dataset.delay = i * 70));
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+        /* 6. SKILL BARS */
+        const bo = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.sbar').forEach(b => b.style.width = b.dataset.w + '%');
+                    bo.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.25 });
+        const ss = document.getElementById('skillsSection');
+        if (ss) bo.observe(ss);
+
+        /* 7. COUNTERS */
+        function animCtr(el, target, dur = 2000) {
+            let v = 0, step = target / (dur / 16);
+            const t = setInterval(() => {
+                v += step;
+                if (v >= target) { el.textContent = target + (target >= 100 ? '+' : ''); clearInterval(t); }
+                else el.textContent = Math.floor(v);
+            }, 16);
+        }
+        const co = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    document.querySelectorAll('.ctr').forEach(el => animCtr(el, parseInt(el.dataset.target)));
+                    co.disconnect();
+                }
+            });
+        }, { threshold: 0.4 });
+        const cs = document.getElementById('counters');
+        if (cs) co.observe(cs);
+
+        /* 8. PROJECT FILTER */
+        document.querySelectorAll('.fbtn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const f = btn.dataset.f;
+                document.querySelectorAll('.pcard').forEach(c => {
+                    c.style.display = (f === 'all' || c.dataset.c.includes(f)) ? '' : 'none';
+                });
+            });
+        });
+
+        /* 9. PROJECT MODAL (with video) */
+        const pm = document.getElementById('pmodal');
+        const titleEl = document.getElementById('mTitle');
+        const descEl = document.getElementById('mDesc');
+        const skillsEl = document.getElementById('mSkills');
+        const videoContainer = document.getElementById('mVideoContainer');
+
+        function closePM() {
+            pm.classList.add('closed');
+            document.body.style.overflow = '';
+            if (videoContainer) videoContainer.innerHTML = '';
+        }
+        document.getElementById('cmodal').addEventListener('click', closePM);
+        pm.addEventListener('click', e => { if (e.target === pm) closePM(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !pm.classList.contains('closed')) closePM(); });
+
+        document.querySelectorAll('.omodal').forEach(btn => {
+            btn.addEventListener('click', () => {
+                titleEl.textContent = btn.dataset.t || '';
+                descEl.textContent = btn.dataset.d || '';
+                skillsEl.innerHTML = (btn.dataset.s || '').split(',').map(s => `<span class="tag">${s.trim()}</span>`).join('');
+                videoContainer.innerHTML = '';
+                const videoUrl = btn.dataset.video;
+                if (videoUrl && videoUrl.trim()) {
+                    const videoElem = document.createElement('video');
+                    videoElem.src = videoUrl;
+                    videoElem.controls = true;
+                    videoElem.className = 'w-full rounded-lg';
+                    videoElem.style.maxHeight = '240px';
+                    videoElem.onerror = () => { videoContainer.innerHTML = '<div class="bg-red-500/20 p-3 rounded-lg text-center text-sm"><i class="fas fa-exclamation-triangle"></i> Video not found.</div>'; };
+                    videoContainer.appendChild(videoElem);
+                }
+                pm.classList.remove('closed');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        /* ═══════════ EMAILJS CONFIGURATION ═══════════ */
+        const EMAILJS_PUBLIC_KEY = "S1ip_JwK86Lb58w-F";
+        const EMAILJS_SERVICE_ID = "l9ZqQxm1xLe5XKA7rK7HQ";
+        const EMAILJS_TEMPLATE_ID = "template_60h024w";
+
+        (function() {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+        })();
+
+        /* 10. CONTACT FORM WITH EMAILJS */
+        document.getElementById('cForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const n = document.getElementById('fn').value.trim();
+            const em = document.getElementById('fe').value.trim();
+            const msg = document.getElementById('fm').value.trim();
+            const st = document.getElementById('fStatus');
+
+            if (!n || !em || !msg) {
+                st.textContent = 'Please fill in all required fields.';
+                st.className = 'block text-center text-sm rounded-lg py-3 px-4 bg-orange-500/10 border border-orange-500/30 text-orange-400';
+                st.style.display = 'block';
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+                st.textContent = 'Please enter a valid email address.';
+                st.className = 'block text-center text-sm rounded-lg py-3 px-4 bg-orange-500/10 border border-orange-500/30 text-orange-400';
+                st.style.display = 'block';
+                return;
+            }
+
+            const btn = document.getElementById('fBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
+            st.style.display = 'none';
+
+            emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#cForm')
+                .then(() => {
+                    st.textContent = '✓ Message sent successfully! I will get back to you soon.';
+                    st.className = 'block text-center text-sm rounded-lg py-3 px-4 bg-teal-400/10 border border-teal-400/30 text-teal-400';
+                    st.style.display = 'block';
+                    this.reset();
+                })
+                .catch((error) => {
+                    console.error('EmailJS error:', error);
+                    st.textContent = '⚠️ Failed to send message. Please try again later.';
+                    st.className = 'block text-center text-sm rounded-lg py-3 px-4 bg-red-500/10 border border-red-500/30 text-red-400';
+                    st.style.display = 'block';
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                });
+        });
+
+        /* 11. FOOTER YEAR */
+        document.getElementById('yr').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
