@@ -16,7 +16,7 @@ Hi, I'm **Justice John Nyazika** - Mechanical Engineer
 Check out my qualifications and project documentation in the repository.
 
 ## 🌐 Live Portfolio
-[View My Portfolio](https://justicejohnnyazika-cyber.github.io/portfolio/)
+[View My Portfolio][(https://nyazikajustice.github.io/portfolio/))]
 
 ---
 📫 **Contact**: [www.linkedin.com/in/justice-nyazika-146041267] or [justicejohnnyazika@gmail.com]
