@@ -1,6 +1,6 @@
 # 👋 My Portfolio
 
-Hi, I'm **Justice Johnny Azika** - Mechanical Engineer
+Hi, I'm **Justice John Nyazika** - Mechanical Engineer
 
 ## 🛠️ Projects
 - Arduino Engineering Project
