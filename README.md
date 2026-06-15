@@ -19,4 +19,4 @@ Check out my qualifications and project documentation in the repository.
 [View My Portfolio](https://justicejohnnyazika-cyber.github.io/portfolio/)
 
 ---
-📫 **Contact**: [Add your email or LinkedIn here]
+📫 **Contact**: [www.linkedin.com/in/justice-nyazika-146041267] or [justicejohnnyazika@gmail.com]
